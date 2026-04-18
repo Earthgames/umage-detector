@@ -1,0 +1,10 @@
+[package]
+name = "umage_detector"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+imageproc = "0.26"
+image = "0.25"
+pico-args = "0.5"
+rand = "0.10.1"

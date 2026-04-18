@@ -8,3 +8,6 @@ imageproc = "0.26"
 image = "0.25"
 pico-args = "0.5"
 rand = "0.10.1"
+
+[profile.dev]
+opt-level = 3

@@ -197,7 +197,6 @@ fn parse_args() -> Result<AppArgs, pico_args::Error> {
     let low_threshold = pargs.opt_value_from_str("--low-threshold")?.unwrap_or(50.0);
     let high_threshold = pargs.opt_value_from_str("--high-threshold")?.unwrap_or(60.0);
     
-    println!("{:?}", pargs.finish());
 
     let args = AppArgs {
         debug,
@@ -207,7 +206,6 @@ fn parse_args() -> Result<AppArgs, pico_args::Error> {
         high_threshold,
         output_path,
     };
-    println!("{:?}", args);
     Ok(args)
 }
 

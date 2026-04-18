@@ -14,6 +14,26 @@ struct AppArgs {
     output_path: PathBuf,
 }
 
+const HELP: &str = "\
+App — Popup Detection Tool
+
+USAGE:
+  app [OPTIONS] <PATH>
+
+FLAGS:
+  -h, --help                 Prints help information
+  -d, --debug                Enables debug output (writes intermediate images)
+  -b, --batch                Processes input as batch (directory mode)
+
+OPTIONS:
+  --low-threshold VALUE      Canny low threshold [default: 50.0]
+  --high-threshold VALUE     Canny high threshold [default: 60.0]
+  -o, --output PATH          Output directory [default: current directory]
+
+ARGS:
+  <PATH>                     Input image or directory path
+";
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 struct Rectangle {
     min_x: u32,
@@ -164,6 +184,11 @@ fn process_single_image(args: &AppArgs) {
 
 fn parse_args() -> Result<AppArgs, pico_args::Error> {
     let mut pargs = pico_args::Arguments::from_env();
+    
+    if pargs.contains(["-h", "--help"]) {
+        print!("{}", HELP);
+        std::process::exit(0);
+    }
 
     let debug = pargs.contains(["-d", "--debug"]);
     let batch = pargs.contains(["-b", "--batch"]);
